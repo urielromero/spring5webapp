@@ -46,6 +46,15 @@ public class BootStrapData implements CommandLineRunner {
         authorRepository.save(rod);
         bookRepository.save(noEJB);
 
+        Author max = new Author("Max", "Torx");
+        Book codingBook = new Book("Coding in Java", "12345567");
+
+        max.getBooks().add(codingBook);
+        codingBook.getAuthors().add(max);
+
+        authorRepository.save(max);
+        bookRepository.save(codingBook);
+
         Publisher nao = new Publisher();
         nao.setName("Nao");
         nao.setAddressLine1("123Main Blvd");
