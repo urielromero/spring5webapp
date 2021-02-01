@@ -1,73 +1,64 @@
 package guru.springframework.spring5webapp.bootstrap;
 
-import guru.springframework.spring5webapp.model.Author;
 import guru.springframework.spring5webapp.model.Book;
-import guru.springframework.spring5webapp.model.Publisher;
-import guru.springframework.spring5webapp.repositories.AuthorRepository;
+import guru.springframework.spring5webapp.model.TimeTracker;
 import guru.springframework.spring5webapp.repositories.BookRepository;
-import guru.springframework.spring5webapp.repositories.PublisherRepository;
+import guru.springframework.spring5webapp.repositories.TimeTrackerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalTime;
 
 @Component
 public class BootStrapData implements CommandLineRunner {
 
 
-    private final AuthorRepository authorRepository;
+
     private final BookRepository bookRepository;
-    private final PublisherRepository publisherRepository;
+    private final TimeTrackerRepository timeTrackerRepository;
+
 
 
     //tells Spring we want an instance of each class injected
-    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
-        this.authorRepository = authorRepository;
+    public BootStrapData(BookRepository bookRepository, TimeTrackerRepository timeTrackerRepository) {
+
         this.bookRepository = bookRepository;
-        this.publisherRepository = publisherRepository;
+        this.timeTrackerRepository = timeTrackerRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-        Author eric = new Author("Eric", "Evans");
-        Book ddd = new Book("Domain Driven Design", "12345");
+       // Author eric = new Author("Eric", "Evans");
+//        Book ddd = new Book("8:00 AM");
+//
+//        bookRepository.save(ddd);
+//
+//
+//        Book noEJB = new Book("10:00 AM");
+//
+//
+//        bookRepository.save(noEJB);
+//
+//        Book codingBook = new Book("1:30 PM");
+//
+//        bookRepository.save(codingBook);
 
-        eric.getBooks().add(ddd);
-        ddd.getAuthors().add(eric);
-
-        authorRepository.save(eric);
-        bookRepository.save(ddd);
-
-        Author rod = new Author("Rod", "Johnson");
-        Book noEJB = new Book("J2EE Development without EJB", "34564332");
-
-        rod.getBooks().add(noEJB);
-        noEJB.getAuthors().add(rod);
-
-        authorRepository.save(rod);
-        bookRepository.save(noEJB);
-
-        Author max = new Author("Max", "Torx");
-        Book codingBook = new Book("Coding in Java", "12345567");
-
-        max.getBooks().add(codingBook);
-        codingBook.getAuthors().add(max);
-
-        authorRepository.save(max);
-        bookRepository.save(codingBook);
-
-        Publisher nao = new Publisher();
-        nao.setName("Nao");
-        nao.setAddressLine1("123Main Blvd");
-        nao.setCity("Dallas");
-        nao.setState("Tx");
-        nao.setZip("750000");
-
-        publisherRepository.save(nao);
-
+//
+//        LocalTime currentTime = LocalTime.now();
+//        TimeTracker currentTimeObj = new TimeTracker(currentTime);
+//        timeTrackerRepository.save(currentTimeObj);
+//
+//
+//        LocalTime currentTime2 = LocalTime.now();
+//        TimeTracker currentTimeObj2 = new TimeTracker(currentTime2);
+//        timeTrackerRepository.save(currentTimeObj2);
 
 
         System.out.println("Started in Bootstrap");
         System.out.println("Number of Books: " + bookRepository.count());
-        System.out.println("Number of Publishers: " + publisherRepository.count());
+        System.out.println("Number of Mains: " + timeTrackerRepository.count());
+       // System.out.println("Current Time" + currentTimeObj.getCurrentTime());
+
     }
 }

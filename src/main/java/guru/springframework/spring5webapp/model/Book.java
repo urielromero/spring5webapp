@@ -3,8 +3,6 @@ package guru.springframework.spring5webapp.model;
 
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Book {
@@ -14,33 +12,18 @@ public class Book {
     private Long id;
 
 
-    private String title;
-    private String isbn;
+    private String time;
 
 
-    @ManyToOne
-    private Publisher publisher;
-
-    @ManyToMany
-    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private Set<Author> authors = new HashSet<>();  //used to add a book to an author and viceversa
 
     public Book() {
     }
 
-    public Book(String title, String isbn) {
-        this.title = title;
-        this.isbn = isbn;
+    public Book(String time) {
+        this.time = time;
+
     }
 
-    public Publisher getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(Publisher publisher) {
-        this.publisher = publisher;
-    }
 
     public Long getId() {
         return id;
@@ -50,51 +33,36 @@ public class Book {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTime() {
+        return time;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public Set<Author> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(Set<Author> authors) {
-        this.authors = authors;
-    }
 
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
-                ", isbn='" + isbn + '\'' +
+                ", time='" + time + '\'' +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Book book = (Book) o;
-
-        return id != null ? id.equals(book.id) : book.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        Book book = (Book) o;
+//
+//        return id != null ? id.equals(book.id) : book.id == null;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return id != null ? id.hashCode() : 0;
+//    }
 }

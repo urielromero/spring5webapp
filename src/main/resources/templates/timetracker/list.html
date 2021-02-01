@@ -1,0 +1,35 @@
+<!DOCTYPE html >
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Spring Framework App</title>
+</head>
+<body>
+
+<h1>Feeding Time List</h1>
+
+<table>
+    <tr>
+        <th>ID  </th>
+        <th>Time Fed  </th>
+        <th>Next Feed</th>
+
+    </tr>
+    <!--        for each book Thymeleaf will render these elements-->
+    <tr th:each="timetracker : ${timetrackers}">
+        <td th:text="${timetracker.id}">123</td>
+        <td th:text="${timetracker.currentTime}">Spring in Action</td>
+        <!--            <td th:text="${book.publisher.name}">Wrox</td>-->
+    </tr>
+</table>
+
+<form action="/addEntry" method="post">
+    <br>
+    <input type="submit" value="New Time">
+</form>
+
+
+</body>
+</html>
