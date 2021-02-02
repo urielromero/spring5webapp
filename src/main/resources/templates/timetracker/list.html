@@ -14,7 +14,7 @@
     <tr>
         <th>ID  </th>
         <th>Time Fed  </th>
-        <th>Next Feed</th>
+        <th>Next Feed </th>
 
     </tr>
     <!--        for each book Thymeleaf will render these elements-->
@@ -29,7 +29,16 @@
     <br>
     <input type="submit" value="New Time">
 </form>
+<form action="/deleteEntry">
+    <br>
+    <input type="submit" value="Delete Time with ID: ">
+    <input type="text" name="xx">
+</form>
 
+<form action="/deleteAll">
+    <br>
+    <input type="submit" value="Reset Tracker" onclick="alert('All Tracked Times Deleted')">
+</form>
 
 </body>
 </html>
