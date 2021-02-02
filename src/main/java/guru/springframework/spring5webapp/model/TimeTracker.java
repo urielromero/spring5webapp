@@ -16,7 +16,6 @@ public class TimeTracker {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
     private LocalTime currentTime = LocalTime.now();
 
     public TimeTracker(){}

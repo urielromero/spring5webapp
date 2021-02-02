@@ -21,7 +21,7 @@
     <tr th:each="timetracker : ${timetrackers}">
         <td th:text="${timetracker.id}">123</td>
         <td th:text="${timetracker.currentTime}">Spring in Action</td>
-        <!--            <td th:text="${book.publisher.name}">Wrox</td>-->
+<!--        <td th:text="${timetracker.publisher}">Wrox</td>-->
     </tr>
 </table>
 
@@ -29,10 +29,16 @@
     <br>
     <input type="submit" value="New Time">
 </form>
+<form action="/update">
+    <br>
+    <input type="submit" value="Update Entry" >
+    <input type="text" name="idEntered" placeholder="Enter ID">
+</form>
+
 <form action="/deleteEntry">
     <br>
-    <input type="submit" value="Delete Time with ID: ">
-    <input type="text" name="xx">
+    <input type="submit" value="Delete Time" >
+    <input type="text" name="idEntered" placeholder="Enter ID">
 </form>
 
 <form action="/deleteAll">

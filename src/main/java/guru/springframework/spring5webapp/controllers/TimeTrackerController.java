@@ -2,10 +2,12 @@ package guru.springframework.spring5webapp.controllers;
 
 import guru.springframework.spring5webapp.model.TimeTracker;
 import guru.springframework.spring5webapp.repositories.TimeTrackerRepository;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalTime;
@@ -45,14 +47,15 @@ public class TimeTrackerController {
     public String deleteEntry(HttpServletRequest request, Model model){
 
         //handle id entered by user
-        String userInputValue = request.getParameter("xx");
+        String userInputValue = request.getParameter("idEntered");
 
-        System.out.println(userInputValue);
+        //turn string into long type
+        Long id = Long.parseLong(userInputValue);
 
-        Long x = Long.parseLong(userInputValue);
 
-        timeTrackerRepository.deleteById(x);
+        timeTrackerRepository.deleteById(id);
 
+        //send java obj to view "timetrackers"
         model.addAttribute("timetrackers", timeTrackerRepository.findAll());
 
         return "timetracker/list";
@@ -61,6 +64,18 @@ public class TimeTrackerController {
     @RequestMapping("/deleteAll")
     public String deleteAll(){
         timeTrackerRepository.deleteAll();
+        return "timetracker/list";
+    }
+
+    @RequestMapping("/update")
+    public String update(HttpServletRequest request, Model model){
+
+       /* String userInputValue = request.getParameter("idEntered");
+
+        Long id = Long.parseLong(userInputValue);
+*/
+
+
         return "timetracker/list";
     }
 

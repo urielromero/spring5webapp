@@ -4,6 +4,7 @@ import guru.springframework.spring5webapp.model.Book;
 import guru.springframework.spring5webapp.model.TimeTracker;
 import guru.springframework.spring5webapp.repositories.BookRepository;
 import guru.springframework.spring5webapp.repositories.TimeTrackerRepository;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -53,6 +54,8 @@ public class BootStrapData implements CommandLineRunner {
 //        LocalTime currentTime2 = LocalTime.now();
 //        TimeTracker currentTimeObj2 = new TimeTracker(currentTime2);
 //        timeTrackerRepository.save(currentTimeObj2);
+
+
 
 
         System.out.println("Started in Bootstrap");
