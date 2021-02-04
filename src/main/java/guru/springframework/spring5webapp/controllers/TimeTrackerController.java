@@ -3,6 +3,7 @@ package guru.springframework.spring5webapp.controllers;
 import guru.springframework.spring5webapp.model.TimeTracker;
 import guru.springframework.spring5webapp.repositories.TimeTrackerRepository;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,13 +69,30 @@ public class TimeTrackerController {
     }
 
     @RequestMapping("/update")
-    public String update(HttpServletRequest request, Model model){
+    public String update(HttpServletRequest request,Model model, TimeTracker newTime){
 
-       /* String userInputValue = request.getParameter("idEntered");
+        //Take input from user and convert to Long
+        String userInputId = request.getParameter("idEntered");
+        String userInputHour = request.getParameter("hourEntered");
+        String userInputMinutes = request.getParameter("minutesEntered");
 
-        Long id = Long.parseLong(userInputValue);
-*/
+        //convert ID to Long to use by repository
+        Long id = Long.parseLong(userInputId);
 
+        //conver to Int to use by LocalTime
+        Integer hour = Integer.parseInt(userInputHour);
+        Integer minutes = Integer.parseInt(userInputMinutes);
+
+        //Update LocalTime with new user input
+        LocalTime updatedTime = LocalTime.of(hour, minutes);
+        newTime = new TimeTracker(updatedTime);
+
+        //Update same obj
+        timeTrackerRepository.findById(id).get().setCurrentTime(updatedTime);
+
+        timeTrackerRepository.save(newTime);
+
+        model.addAttribute("timetrackers", timeTrackerRepository.findAll());
 
         return "timetracker/list";
     }
