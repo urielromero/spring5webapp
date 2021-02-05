@@ -1,7 +1,5 @@
 package guru.springframework.spring5webapp.model;
 
-import io.micrometer.core.instrument.util.JsonUtils;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,11 +16,11 @@ public class TimeTracker {
 
     private LocalTime currentTime = LocalTime.now();
 
+
     public TimeTracker(){}
 
     public TimeTracker( LocalTime localTime){
         this.currentTime = localTime.now();
-
     }
 
     public Long getId() {

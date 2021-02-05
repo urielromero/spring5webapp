@@ -69,7 +69,7 @@ public class TimeTrackerController {
     }
 
     @RequestMapping("/update")
-    public String update(HttpServletRequest request,Model model, TimeTracker newTime){
+    public String update(HttpServletRequest request, Model model){
 
         //Take input from user and convert to Long
         String userInputId = request.getParameter("idEntered");
@@ -79,19 +79,23 @@ public class TimeTrackerController {
         //convert ID to Long to use by repository
         Long id = Long.parseLong(userInputId);
 
-        //conver to Int to use by LocalTime
+        //convert to Int to use by LocalTime
         Integer hour = Integer.parseInt(userInputHour);
         Integer minutes = Integer.parseInt(userInputMinutes);
 
         //Update LocalTime with new user input
         LocalTime updatedTime = LocalTime.of(hour, minutes);
-        newTime = new TimeTracker(updatedTime);
+
+
+        TimeTracker newTime = new TimeTracker(updatedTime);
 
         //Update same obj
         timeTrackerRepository.findById(id).get().setCurrentTime(updatedTime);
 
-        timeTrackerRepository.save(newTime);
+        //save same obj
+        timeTrackerRepository.save(timeTrackerRepository.findById(id).get());
 
+        //refresh/display list on page
         model.addAttribute("timetrackers", timeTrackerRepository.findAll());
 
         return "timetracker/list";
